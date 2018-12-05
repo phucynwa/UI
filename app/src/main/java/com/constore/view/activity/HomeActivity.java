@@ -1,13 +1,13 @@
 package com.constore.view.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.manh.btlui.R;
+import com.constore.R;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -27,43 +27,12 @@ public class HomeActivity extends AppCompatActivity {
 
 
         // Onclick
-        btnSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(v.getContext(), SearchActivity.class));
-            }
-        });
-
-        btnCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(v.getContext(), CartActivity.class));
-            }
-        });
-        btnPayment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(v.getContext(), PaymentActivity.class));
-            }
-        });
-        btnRate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(v.getContext(), RateActivity.class));
-            }
-        });
-        btnContact.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(v.getContext(), ContactActivity.class));
-            }
-        });
-        btnNotification.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(v.getContext(), NotificationActivity.class));
-            }
-        });
+        btnSearch.setOnClickListener(v -> startActivity(new Intent(v.getContext(), SearchActivity.class)));
+        btnCart.setOnClickListener(v -> startActivity(new Intent(v.getContext(), CartActivity.class)));
+        btnPayment.setOnClickListener(v -> startActivity(new Intent(v.getContext(), PaymentActivity.class)));
+        btnRate.setOnClickListener(v -> startActivity(new Intent(v.getContext(), RateActivity.class)));
+        btnContact.setOnClickListener(v -> startActivity(new Intent(v.getContext(), ContactActivity.class)));
+        btnNotification.setOnClickListener(v -> startActivity(new Intent(v.getContext(), NotificationActivity.class)));
 
     }
 
@@ -75,7 +44,6 @@ public class HomeActivity extends AppCompatActivity {
         if (id == android.R.id.home) {
             this.finish();
         }
-
 
         return super.onOptionsItemSelected(item);
     }

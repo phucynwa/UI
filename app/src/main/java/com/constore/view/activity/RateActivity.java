@@ -1,10 +1,11 @@
 package com.constore.view.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-import com.manh.btlui.R;
+import com.constore.R;
 
 public class RateActivity extends AppCompatActivity {
 
@@ -14,10 +15,12 @@ public class RateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rate);
 
         // Add back button
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -26,7 +29,6 @@ public class RateActivity extends AppCompatActivity {
         if (id == android.R.id.home) {
             this.finish();
         }
-
 
         return super.onOptionsItemSelected(item);
     }

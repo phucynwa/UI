@@ -18,7 +18,7 @@
             android:name="com.constore.view.activity.LoginActivity"
             android:label="@string/title_activity_login">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -26,27 +26,51 @@
         <activity
             android:name="com.constore.view.activity.HomeActivity"
                   android:label="@string/title_home">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
         </activity>
         <activity
             android:name="com.constore.view.activity.SearchActivity"
                   android:label="@string/title_activity_search">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
         </activity>
         <activity
             android:name="com.constore.view.activity.CartActivity"
-            android:label="@string/title_activity_cart" />
+            android:label="@string/title_activity_cart">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="com.constore.view.activity.PaymentActivity"
-            android:label="@string/title_activity_payment" />
+            android:label="@string/title_activity_payment">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="com.constore.view.activity.RateActivity"
-            android:label="@string/title_activity_rate" />
+            android:label="@string/title_activity_rate">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="com.constore.view.activity.ContactActivity"
-            android:label="@string/title_activity_contact" />
+            android:label="@string/title_activity_contact">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="com.constore.view.activity.NotificationActivity"
                   android:label="@string/title_notifications">
-
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
         </activity>
     </application>
 
