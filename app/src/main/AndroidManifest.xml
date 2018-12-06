@@ -25,14 +25,14 @@
         </activity>
         <activity
             android:name="com.constore.view.activity.HomeActivity"
-                  android:label="@string/title_home">
+            android:label="@string/title_home">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
         <activity
             android:name="com.constore.view.activity.SearchActivity"
-                  android:label="@string/title_activity_search">
+            android:label="@string/title_activity_search">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
@@ -67,7 +67,7 @@
         </activity>
         <activity
             android:name="com.constore.view.activity.NotificationActivity"
-                  android:label="@string/title_notifications">
+            android:label="@string/title_notifications">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>

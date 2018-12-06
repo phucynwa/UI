@@ -6,68 +6,23 @@
     android:layout_height="match_parent"
     tools:context="com.constore.view.activity.HomeActivity">
 
-    <Button
-        android:id="@+id/btnSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <FrameLayout
+        android:id="@+id/frame_body"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="135dp"
-        android:onClick="goToSecondActivity"
-        android:text="Search" />
+        android:layout_marginTop="0dp" />
 
-    <Button
-        android:id="@+id/btnNotification"
-        android:layout_width="wrap_content"
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="270dp"
-        android:layout_marginTop="283dp"
-        android:onClick="goToSecondActivity"
-        android:text="Notification" />
-
-    <Button
-        android:id="@+id/btnContact"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="162dp"
-        android:layout_marginTop="282dp"
-        android:onClick="goToSecondActivity"
-        android:text="Contact" />
-
-    <Button
-        android:id="@+id/btnRate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="279dp"
-        android:onClick="goToSecondActivity"
-        android:text="Rate" />
-
-    <Button
-        android:id="@+id/btnCart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/btnSearch"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="3dp"
-        android:layout_marginEnd="146dp"
-        android:text="Cart" />
-
-    <Button
-        android:id="@+id/btnPayment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/btnCart"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="-5dp"
-        android:layout_marginEnd="13dp"
-        android:text="Payment" />
-
+        android:layout_alignParentBottom="true"
+        app:itemBackground="@color/colorPrimary"
+        app:itemIconTint="@android:color/white"
+        app:itemTextColor="@android:color/white"
+        app:labelVisibilityMode="unlabeled"
+        app:itemIconSize="32dp"
+        app:menu="@menu/menu_navigation" />
 </RelativeLayout>
