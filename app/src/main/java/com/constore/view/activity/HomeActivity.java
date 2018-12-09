@@ -2,49 +2,75 @@ package com.constore.view.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-
 import com.constore.R;
 
 public class HomeActivity extends AppCompatActivity {
 
-    Button btnSearch, btnCart, btnPayment, btnRate, btnContact, btnNotification;
+    private static final String TAG = HomeActivity.class.getSimpleName();
+    BottomNavigationView bottomNavigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        initViews();
+        initListeners();
+    }
 
-        btnSearch = findViewById(R.id.btnSearch);
-        btnCart = findViewById(R.id.btnCart);
-        btnPayment = findViewById(R.id.btnPayment);
-        btnRate = findViewById(R.id.btnRate);
-        btnContact = findViewById(R.id.btnContact);
-        btnNotification = findViewById(R.id.btnNotification);
-
-
-        // Onclick
-        btnSearch.setOnClickListener(v -> startActivity(new Intent(v.getContext(), SearchActivity.class)));
-        btnCart.setOnClickListener(v -> startActivity(new Intent(v.getContext(), CartActivity.class)));
-        btnPayment.setOnClickListener(v -> startActivity(new Intent(v.getContext(), PaymentActivity.class)));
-        btnRate.setOnClickListener(v -> startActivity(new Intent(v.getContext(), RateActivity.class)));
-        btnContact.setOnClickListener(v -> startActivity(new Intent(v.getContext(), ContactActivity.class)));
-        btnNotification.setOnClickListener(v -> startActivity(new Intent(v.getContext(), NotificationActivity.class)));
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        bottomNavigation.setSelectedItemId(0);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        // end the activity
-        if (id == android.R.id.home) {
-            this.finish();
+        switch (item.getItemId()) {
+            case R.id.button_cart:
+                startActivity(new Intent(this, CartActivity.class));
+            default:
+                return super.onOptionsItemSelected(item);
         }
+    }
 
-        return super.onOptionsItemSelected(item);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_titlebar, menu);
+        menu.findItem(R.id.button_cart).getIcon()
+                .setTint(getResources().getColor(R.color.colorWhite));
+        menu.findItem(R.id.button_search).getIcon()
+                .setTint(getResources().getColor(R.color.colorWhite));
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    private void initViews() {
+        setContentView(R.layout.activity_home);
+        bottomNavigation = findViewById(R.id.bottom_navigation);
+    }
+
+
+    private void initListeners() {
+        bottomNavigation.setOnNavigationItemSelectedListener(this::onNavigationItemSelected);
+    }
+
+    private boolean onNavigationItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.button_notification:
+                startActivity(new Intent(this, NotificationActivity.class));
+                break;
+            case R.id.button_payment:
+                startActivity(new Intent(this, PaymentActivity.class));
+                break;
+            case R.id.button_rate:
+                startActivity(new Intent(this, RateActivity.class));
+                break;
+            case R.id.button_contact:
+                startActivity(new Intent(this, ContactActivity.class));
+                break;
+        }
+        return true;
     }
 }
