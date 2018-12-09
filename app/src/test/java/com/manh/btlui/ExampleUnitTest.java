@@ -1,5 +1,7 @@
 package com.manh.btlui;
 
+import com.constore.model.bean.Bank;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -13,5 +15,14 @@ public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
+    }
+
+    @Test
+    public void testBean() {
+        Bank bank = new Bank();
+        bank.setId(4);
+        bank.setName("a name");
+        bank.setDetails("some detail");
+
     }
 }
