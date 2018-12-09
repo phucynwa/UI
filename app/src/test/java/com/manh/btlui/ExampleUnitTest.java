@@ -1,10 +1,11 @@
 package com.manh.btlui;
 
 import com.constore.model.bean.Bank;
+import com.constore.model.db.Table;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -23,6 +24,26 @@ public class ExampleUnitTest {
         bank.setId(4);
         bank.setName("a name");
         bank.setDetails("some detail");
+        System.out.println(bank);
 
+        assertEquals(bank.getId(), new Integer(4));
+        assertEquals(bank.getName(), "a name");
+        assertEquals(bank.getDetails(), "some detail");
+
+        assertEquals(bank.getValue("id"), 4);
+        assertEquals(bank.getValue("name"), "a name");
+        assertEquals(bank.getValue("details"), "some detail");
+    }
+
+    @Test
+    public void testTable() {
+        Table<Bank> bankTable = new Table<>(Bank.class);
+        Bank bank = new Bank();
+        bank.setId(4);
+        bank.setName("a name");
+        bank.setDetails("some detail");
+        bankTable.add(bank);
+
+        System.out.println(bankTable.get(null, null));
     }
 }
