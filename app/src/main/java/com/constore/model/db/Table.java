@@ -15,22 +15,28 @@ public final class Table<BeanType extends Bean<BeanType>> {
 
     private int idCounter;
 
-    Table(Class<BeanType> aClass, List<BeanType> table) {
-        this.table = table;
+    public Table(Class<BeanType> aClass, List<BeanType> table) {
+        try {
+            // ensure class are loaded before get map (and newInstance work, too)
+            aClass.newInstance();
+        } catch (IllegalAccessException | InstantiationException e) {
+            throw new IllegalArgumentException();
+        }
+
+        this.table = table != null ? table : new ArrayList<>();
         this.uniqueMap = new HashMap<>();
         this.notNullSet = new TreeSet<>();
-
         this.idCounter = 1;
 
         final Map<String, BeanHelper> fieldMap = Bean.getFieldMap(aClass);
         for (final Map.Entry<String, BeanHelper> entry : fieldMap.entrySet()) {
-            final Bean.BeanField beanField = entry.getValue().getFieldAnnotation();
+            final Bean.BeanField beanField = entry.getValue().getAnnotation();
             final String field = entry.getKey();
             if (beanField.isUnique()) uniqueMap.put(field, new HashMap<>());
             if (beanField.isNotNull()) notNullSet.add(field);
         }
-        if (table.size() > 0) {
-            for (final BeanType listBean : table) {
+        if (this.table.size() > 0) {
+            for (final BeanType listBean : this.table) {
                 for (final Map.Entry<String, Map<Object, BeanType>> entry : uniqueMap.entrySet()) {
                     final String field = entry.getKey();
                     final Map<Object, BeanType> map = entry.getValue();
@@ -39,6 +45,10 @@ public final class Table<BeanType extends Bean<BeanType>> {
                 }
             }
         }
+    }
+
+    public Table(Class<BeanType> aClass) {
+        this(aClass, new ArrayList<>());
     }
 
     private synchronized BeanType searchByIndex(BeanType searchBean, Set<String> searchFields) {

@@ -14,32 +14,36 @@ public abstract class Bean<BeanType extends Bean<BeanType>> implements Serializa
     private static final Map<Class<?>, Map<String, BeanHelper>> CLASS_FIELD_MAP = new HashMap<>();
     private static final long serialVersionUID = 1L;
 
-    @BeanField(isNotNull = true) private Integer id;
+    @BeanField(isUnique = true, isNotNull = true) private Integer id;
+
+    private static void createBeanHelper(Map<String, BeanHelper> fieldMap, Class<?> aClass, Field field) {
+        final BeanField fieldAnnotation = field.getAnnotation(BeanField.class);
+        if (fieldAnnotation != null) {
+            final Class<?> fieldType = field.getType();
+            final char[] fieldNameCharArray = field.getName().toCharArray();
+            fieldNameCharArray[0] = Character.toUpperCase(fieldNameCharArray[0]);
+            final String fieldNameUppercase = new String(fieldNameCharArray);
+
+            final String getterName = fieldAnnotation.getter().isEmpty() ? ("get" + fieldNameUppercase) : fieldAnnotation.getter();
+            final String setterName = fieldAnnotation.setter().isEmpty() ? ("set" + fieldNameUppercase) : fieldAnnotation.setter();
+            try {
+                final Method getter = aClass.getMethod(getterName);
+                final Method setter = aClass.getMethod(setterName, fieldType);
+                fieldMap.put(field.getName(), new BeanHelper(getter, setter, fieldAnnotation));
+            } catch (NoSuchMethodException e) {
+                throw new IllegalArgumentException(e);
+            }
+        }
+    }
 
     protected synchronized static <BeanType extends Bean<BeanType>> void beanInitialize(Class<BeanType> aClass) {
         final Map<String, BeanHelper> fieldMap = new HashMap<>();
+        try {
+            createBeanHelper(fieldMap, Bean.class, Bean.class.getDeclaredField("id"));
+        } catch (NoSuchFieldException ignored) {
+        }
         for (final Field field : aClass.getDeclaredFields()) {
-            final BeanField fieldAnnotation = field.getAnnotation(BeanField.class);
-            if (fieldAnnotation != null) {
-                final Class<?> fieldType = field.getType();
-                if (Cloneable.class.isAssignableFrom(fieldType)) {
-                    final char[] fieldNameCharArray = field.getName().toCharArray();
-                    fieldNameCharArray[0] = Character.toUpperCase(fieldNameCharArray[0]);
-                    final String fieldNameUppercase = new String(fieldNameCharArray);
-
-                    final String getterName = fieldAnnotation.getter().isEmpty() ? ("get" + fieldNameUppercase) : fieldAnnotation.getter();
-                    final String setterName = fieldAnnotation.setter().isEmpty() ? ("set" + fieldNameUppercase) : fieldAnnotation.setter();
-                    try {
-                        final Method getter = aClass.getMethod(getterName);
-                        final Method setter = aClass.getMethod(setterName, fieldType);
-                        fieldMap.put(field.getName(), new BeanHelper(field, getter, setter));
-                    } catch (NoSuchMethodException e) {
-                        throw new IllegalArgumentException(e);
-                    }
-                } else {
-                    throw new IllegalArgumentException("Should be a Cloneable type. fieldType = " + fieldType.toString());
-                }
-            }
+            createBeanHelper(fieldMap, aClass, field);
         }
         CLASS_FIELD_MAP.put(aClass, fieldMap);
     }
@@ -59,7 +63,7 @@ public abstract class Bean<BeanType extends Bean<BeanType>> implements Serializa
     public final Object getValue(String field) {
         final Map<String, BeanHelper> fieldMap = getFieldMap(getClass());
         final BeanHelper methods = fieldMap.get(field);
-        if (methods == null) throw new IllegalArgumentException();
+        if (methods == null) throw new IllegalArgumentException("field = " + field);
         try {
             return methods.getValue(this);
         } catch (ReflectiveOperationException e) {
@@ -124,6 +128,18 @@ public abstract class Bean<BeanType extends Bean<BeanType>> implements Serializa
         } catch (ReflectiveOperationException e) {
             throw new UnsupportedOperationException(e);
         }
+    }
+
+    @Override
+    public final String toString() {
+        final Map<String, BeanHelper> fieldMap = getFieldMap(getClass());
+        final StringBuilder builder = new StringBuilder("{id=").append(id);
+        for (final String field : fieldMap.keySet()) {
+            if (!field.equals("id")) {
+                builder.append(',').append(field).append('=').append(getValue(field));
+            }
+        }
+        return builder.append('}').toString();
     }
 
     @Override
