@@ -1,17 +1,23 @@
 package com.constore.view.activity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import com.constore.R;
+import android.widget.Toast;
 
-public class HomeActivity extends AppCompatActivity {
+import com.constore.R;
+import com.constore.model.bean.User;
+
+public class HomeActivity extends Activity {
 
     private static final String TAG = HomeActivity.class.getSimpleName();
     BottomNavigationView bottomNavigation;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +45,14 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_titlebar, menu);
-        menu.findItem(R.id.button_cart).getIcon()
-                .setTint(getResources().getColor(R.color.colorWhite));
-        menu.findItem(R.id.button_search).getIcon()
-                .setTint(getResources().getColor(R.color.colorWhite));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            menu.findItem(R.id.button_cart).getIcon()
+                    .setTint(getResources().getColor(R.color.colorWhite));
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            menu.findItem(R.id.button_search).getIcon()
+                    .setTint(getResources().getColor(R.color.colorWhite));
+        }
         return super.onCreateOptionsMenu(menu);
     }
 

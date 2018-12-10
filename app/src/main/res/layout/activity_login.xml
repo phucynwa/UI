@@ -30,7 +30,9 @@
             android:id="@+id/email_login_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            >
 
             <ImageView
                 android:layout_width="200px"
@@ -87,7 +89,8 @@
                 android:layout_gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_white_rounded"
+                android:background="@color/colorLink"
+
                 android:text="Đăng nhập"/>
 
             <TextView
