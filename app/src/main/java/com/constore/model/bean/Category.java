@@ -7,10 +7,17 @@ public final class Category extends Bean<Category> {
         beanInitialize(Category.class);
     }
 
+    public Category(String name, String details, int icon) {
+        this.name = name;
+        this.details = details;
+        this.icon = icon;
+    }
+
     private static final long serialVersionUID = 1L;
 
     @BeanField private String name;
     @BeanField private String details;
+    private int icon;
 
     public String getName() {
         return name;
@@ -26,5 +33,13 @@ public final class Category extends Bean<Category> {
 
     public void setDetails(String details) {
         this.details = details;
+    }
+
+    public int getIcon() {
+        return icon;
+    }
+
+    public void setIcon(int icon) {
+        this.icon = icon;
     }
 }

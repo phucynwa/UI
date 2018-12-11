@@ -9,16 +9,15 @@
         android:title="@string/title_home"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/button_payment"
-        android:enabled="true"
-        android:icon="@drawable/ic_payment_black_24dp"
-        android:title="@string/title_payment"
-        app:showAsAction="ifRoom" />
+        android:id="@+id/button_cart"
+        android:icon="@drawable/ic_shopping_cart_black_24dp"
+        android:title="@string/title_activity_cart"
+        app:showAsAction="always"/>
     <item
         android:id="@+id/button_rate"
         android:enabled="true"
         android:icon="@drawable/ic_rate_review_black_24dp"
-        android:title="@string/title_rate"
+        android:title="@string/title_activity_rate"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/button_notification"
@@ -30,6 +29,6 @@
         android:id="@+id/button_contact"
         android:enabled="true"
         android:icon="@drawable/ic_perm_contact_calendar_black_24dp"
-        android:title="@string/title_contact"
+        android:title="@string/title_activity_contact"
         app:showAsAction="ifRoom" />
 </menu>

@@ -16,9 +16,15 @@ public final class Product extends Bean<Product> {
     @BeanField private Float rating;
     @BeanField private String quantity;
     @BeanField private Long price;
-    @BeanField private String shopId;
+    @BeanField private Integer shopId;
+    @BeanField private Integer categoryId;
     @BeanField private Date createdDate;
     @BeanField private Date modifiedDate;
+
+    public Product(String name, Long price) {
+        this.name = name;
+        this.price = price;
+    }
 
     public String getName() {
         return name;
@@ -60,11 +66,11 @@ public final class Product extends Bean<Product> {
         this.price = price;
     }
 
-    public String getShopId() {
+    public Integer getShopId() {
         return shopId;
     }
 
-    public void setShopId(String shopId) {
+    public void setShopId(Integer shopId) {
         this.shopId = shopId;
     }
 
@@ -82,5 +88,13 @@ public final class Product extends Bean<Product> {
 
     public void setModifiedDate(Date modifiedDate) {
         this.modifiedDate = modifiedDate;
+    }
+
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 }

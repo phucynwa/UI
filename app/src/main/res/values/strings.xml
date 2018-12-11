@@ -29,4 +29,9 @@
     <string name="title_activity_payment">PaymentActivity</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_test">TestActivity</string>
+    <string name="book">Book</string>
+    <string name="product_name">Product Name</string>
+    <string name="price">Price</string>
+    <string name="title_categories">Categories</string>
+    <string name="title_products">Products</string>
 </resources>
