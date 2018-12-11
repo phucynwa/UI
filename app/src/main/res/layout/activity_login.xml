@@ -31,24 +31,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingTop="@dimen/activity_vertical_margin"
-            >
+            android:paddingTop="@dimen/activity_vertical_margin">
 
             <ImageView
-                android:layout_width="200px"
-                android:layout_height="200px"
+                android:layout_width="300px"
+                android:layout_height="300px"
                 android:layout_gravity="center"
-                android:background="@drawable/logo"/>
+                android:background="@drawable/logo" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="80dp"
-                android:text="Constore"
-                android:fontFamily="cursive"
-                android:gravity="center"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
-                android:textSize="100px"/>
+                android:fontFamily="cursive"
+                android:gravity="center"
+                android:text="Constore"
+                android:textSize="100px" />
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -85,66 +84,93 @@
 
             <Button
                 android:id="@+id/btnLogIn"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
                 android:background="@color/colorLink"
 
-                android:text="Đăng nhập"/>
+                android:text="Đăng nhập" />
 
             <TextView
-                android:layout_marginTop="10dp"
                 android:id="@+id/txtForgetPass"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Quên mật khẩu"
-                android:autoLink="web"
                 android:layout_gravity="center"
-                android:textColor="@color/colorLink"/>
+                android:layout_marginTop="10dp"
+                android:autoLink="web"
+                android:text="Quên mật khẩu"
+                android:textColor="@color/colorLink" />
 
             <TextView
-                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
                 android:gravity="center_horizontal"
                 android:text="Hoặc đăng nhập với"
-                android:layout_gravity="center"
-                android:textColor="#dacdcd"/>
+                android:textColor="#dacdcd" />
 
             <LinearLayout
-                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center">
 
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/googleplus"/>
+                <LinearLayout
+                    android:id="@+id/FrameLayout1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
 
-                <ImageView
-                    android:layout_width="50dp"
+                    <com.facebook.login.widget.LoginButton
+                        android:id="@+id/login_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/img_fb"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/facebook" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/FrameLayout2"
+                    android:layout_width="wrap_content"
                     android:layout_height="50dp"
-                    android:layout_marginLeft="30dp"
-                    android:background="@drawable/facebook"/>
+                    android:layout_marginLeft="10dp">
+
+                    <com.google.android.gms.common.SignInButton
+                        android:id="@+id/btn_sign_in"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="0dp" />
+
+                    <ImageView
+                        android:id="@+id/img_google"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/googleplus" />
+                </LinearLayout>
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:orientation="vertical"
-                android:layout_marginTop="30dp">
+                android:layout_marginTop="30dp"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/txtRegist"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="Chưa có tài khoản? Đăng ký ngay"
-                    android:textColor="@color/colorLink"
-                    android:gravity="center"/>
+                    android:textColor="@color/colorLink" />
             </LinearLayout>
 
         </LinearLayout>

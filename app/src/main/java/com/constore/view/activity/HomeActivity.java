@@ -72,7 +72,7 @@ public class HomeActivity extends Activity {
                 startActivity(new Intent(this, NotificationActivity.class));
                 break;
             case R.id.button_payment:
-                startActivity(new Intent(this, PaymentActivity.class));
+                startActivity(new Intent(this, RegisterAddressActivity.class));
                 break;
             case R.id.button_rate:
                 startActivity(new Intent(this, RateActivity.class));

@@ -36,4 +36,8 @@
     <string name="title_payment">Thanh toán</string>
     <string name="title_rate">Đánh giá</string>
     <string name="title_contact">Liên hệ</string>
+
+    <string name="facebook_app_id">1314829685325539</string>
+    <string name="fb_login_protocol_scheme">fb1314829685325539</string>
+    <string name="login_error">Error during login</string>
 </resources>
