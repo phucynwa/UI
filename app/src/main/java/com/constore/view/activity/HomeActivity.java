@@ -1,6 +1,8 @@
 package com.constore.view.activity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
 import com.constore.R;
 import com.constore.model.bean.Category;
 import com.constore.model.bean.Product;
@@ -17,8 +21,9 @@ import com.constore.view.adapter.ListProductAdapter;
 import com.synnapps.carouselview.CarouselView;
 import java.util.Arrays;
 import java.util.List;
+import com.constore.model.bean.User;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends Activity {
 
     private static final String TAG = HomeActivity.class.getSimpleName();
     BottomNavigationView bottomNavigation;
@@ -43,6 +48,7 @@ public class HomeActivity extends AppCompatActivity {
 
     int[] sampleImages = {R.drawable.image_1, R.drawable.image_2, R.drawable.image_3,
             R.drawable.image_4, R.drawable.image_5};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +76,14 @@ public class HomeActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_titlebar, menu);
         menu.findItem(R.id.button_search).getIcon()
                 .setTint(getResources().getColor(R.color.colorWhite));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            menu.findItem(R.id.button_cart).getIcon()
+                    .setTint(getResources().getColor(R.color.colorWhite));
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            menu.findItem(R.id.button_search).getIcon()
+                    .setTint(getResources().getColor(R.color.colorWhite));
+        }
         return super.onCreateOptionsMenu(menu);
     }
 
